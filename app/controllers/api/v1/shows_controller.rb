@@ -24,7 +24,7 @@ class Api::V1::ShowsController < ApplicationController
   private
 
   def show_params
-    params.require(:show).permit(:title, :genre, :schedule, :rating)
+    params.require(:show).permit(:title, :genre, :schedule, :rating, :url, :description)
   end
 
 end
