@@ -1,3 +1,4 @@
 class Show < ApplicationRecord
-  has_many :users
+  has_many :favorites
+  has_many :users, through: :favorites
 end
