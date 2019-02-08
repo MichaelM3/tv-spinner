@@ -1,4 +1,5 @@
 class Api::V1::ShowsSerializer < ActiveModel::Serializer
-  belongs_to :user
+  has_many :users
+  has_many :favorites
   attributes :id, :title, :genre, :schedule, :rating
 end
