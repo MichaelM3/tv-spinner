@@ -14,6 +14,7 @@ class Api::V1::SessionsController < ApplicationController
     else
       flash[:notice] = 'Invalid username or password'
       redirect_to json: login_path
+    end
   end
 
   def destroy
