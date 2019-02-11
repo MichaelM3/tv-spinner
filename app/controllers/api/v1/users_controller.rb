@@ -13,7 +13,8 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    render json: @user, status: :created
+    session[:user_id] = @user.id
+    redirect_to json: @user, status: :created
   end
 
   def update
