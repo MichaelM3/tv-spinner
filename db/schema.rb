@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2019_02_08_192010) do
     t.string "genre"
     t.string "schedule"
     t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "url"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create]
 
   def index
     @users = User.all
@@ -13,14 +12,26 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    session[:user_id] = @user.id
-    redirect_to json: @user, status: :created
+    render json: @user
   end
 
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
     render json: @user
+  end
+
+  def logged_in
+    @user = User.find_by(name: params[:name])
+    if @user
+      if @user.authenticate(params[:user][:password])
+        render json: @user
+      else
+        render json: {message:"Wrong username or password"}
+      end
+    else
+      render json: {message:"Username does not exist"}
+    end
   end
 
   private
