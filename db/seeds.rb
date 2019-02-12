@@ -7,7 +7,7 @@ response_hash = JSON.parse(response_string)
 
 #Iterate through each show from API and create data for the Rails API backend
 response_hash.each do |show|
-  Show.create(title: show["name"], genre: show["genres"].join(", "), schedule: show["schedule"]["days"][0], rating: show["rating"]["average"], url: show["officialSite"], description: show["summary"])
+  Show.create(title: show["name"], genre: show["genres"].join(", "), schedule: show["schedule"]["days"][0], rating: show["rating"]["average"], url: show["officialSite"], description: show["summary"], image: show["image"]["original"])
 end
 
 puts "Finished Seeding api data"
@@ -36,11 +36,19 @@ Show.create(title: "Eh Show", genre: "Thriller", schedule: "Sunday", rating: 80)
 
 Favorite.create(user_id: 1, show_id: 1)
 Favorite.create(user_id: 1, show_id: 2)
-Favorite.create(user_id: 1, show_id: 2)
-Favorite.create(user_id: 1, show_id: 3)
-Favorite.create(user_id: 1, show_id: 4)
-Favorite.create(user_id: 1, show_id: 1)
-Favorite.create(user_id: 1, show_id: 3)
-Favorite.create(user_id: 1, show_id: 2)
+Favorite.create(user_id: 1, show_id: 10)
+Favorite.create(user_id: 1, show_id: 20)
+Favorite.create(user_id: 2, show_id: 5)
+Favorite.create(user_id: 2, show_id: 7)
+Favorite.create(user_id: 2, show_id: 8)
+Favorite.create(user_id: 2, show_id: 9)
+Favorite.create(user_id: 3, show_id: 8)
+Favorite.create(user_id: 3, show_id: 2)
+Favorite.create(user_id: 3, show_id: 19)
+Favorite.create(user_id: 3, show_id: 17)
+Favorite.create(user_id: 4, show_id: 60)
+Favorite.create(user_id: 4, show_id: 3)
+Favorite.create(user_id: 4, show_id: 12)
+Favorite.create(user_id: 4, show_id: 11)
 
 puts "Finished Seeding all data"

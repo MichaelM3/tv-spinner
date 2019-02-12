@@ -7,7 +7,7 @@ class Api::V1::FavoritesController < ApplicationController
 
   def show
     @favortie = Favorite.find(params[:id])
-    render json: FavoriteSerializer.new(@favortie), status: :ok
+    render json: @favortie, status: :ok
   end
 
   def create
