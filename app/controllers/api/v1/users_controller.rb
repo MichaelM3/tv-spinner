@@ -12,7 +12,11 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    render json: @user
+    if @user.valid?
+      render json: @user, message: "Created User!"
+    else
+      render json: {message: @user.errors.full_messages}
+    end
   end
 
   def update
@@ -22,15 +26,15 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def logged_in
-    @user = User.find_by(name: params[:name])
+    @user = User.find {|user| user.name.downcase === params[:name].downcase}
     if @user
       if @user.authenticate(params[:user][:password])
         render json: @user
       else
-        render json: {message:"Wrong username or password"}
+        render json: {message: "Wrong username or password"}
       end
     else
-      render json: {message:"Username does not exist"}
+      render json: {message: "Username does not exist"}
     end
   end
 
