@@ -3,14 +3,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, except: :destroy
+      resources :users, except: [:new, :edit, :destroy]
       post '/users/:name', to: 'users#logged_in', as: 'logged_in'
     end
   end
 
   namespace :api do
     namespace :v1 do
-      resources :shows, except: :destroy
+      resources :shows, only: [:index, :show]
     end
   end
 
