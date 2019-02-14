@@ -7,7 +7,7 @@ response_hash = JSON.parse(response_string)
 
 #Iterate through each show from API and create data for the Rails API backend
 response_hash.each do |show|
-  Show.create(title: show["name"], genre: show["genres"].join(", "), schedule: show["schedule"]["days"][0], rating: show["rating"]["average"], url: show["officialSite"], description: show["summary"], image: show["image"]["original"])
+  Show.create(title: show["name"], genre: show["genres"].join(", "), schedule: show["schedule"]["days"][0], rating: show["rating"]["average"], url: show["officialSite"], description: show["summary"], image: show["image"]["medium"])
 end
 
 puts "Finished Seeding api data"
