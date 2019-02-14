@@ -6,8 +6,8 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def show
-    @favortie = Favorite.find(params[:id])
-    render json: @favortie, status: :ok
+    @favorite = Favorite.find(params[:id])
+    render json: @favorite, status: :ok
   end
 
   def create
@@ -22,6 +22,13 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.delete
+  end
+
+  private
+
+  def favorite_params
     params.require(:favorite).permit(:user_id, :show_id)
   end
 
